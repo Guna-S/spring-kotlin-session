@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  redis:
+    image: redis:3-alpine
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./etc:/var/lib/data
+  kotlin-session:
+    image: chiyanram/kotlin-session
+    ports:
+      - 9011:9011
+    container_name: kotlin-session
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+volumes:
+  etc:
+    driver: local
+

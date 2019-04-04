@@ -18,7 +18,9 @@ class SessionController {
     @PutMapping("/session")
     fun add(session: ServerWebExchange): Mono<String> {
 
-        return session.
+
+        return session.session.map { it.attributes }
+                .map { it.put("name", "vijay");"vijay" }
 
     }
-}w
+}
